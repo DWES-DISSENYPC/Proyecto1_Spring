@@ -6,6 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 th:text="'¡Bienvenido a la tienda ' + ${nombre} + '!'"></h1>
+   
+    <!-- Sustituimos el contenido de esta web con el codigo de th:replace-->
+
+    <header th:replace = "fragments/fragment-header :: cabecera">
+                <!--  directorio/nombreFichero  ::  nombre del th "del fragmento"-->
+
+        <h1 th:text="'¡Bienvenido a la tienda ' + ${nombre} + '!'"></h1>
+
+    </header>
+                    
+
+    <main th:include = "fragments/fragment-bestProducts :: prodcutos(${productosMejores})"> </main>
+    <!-- inluye el codigo no lo reemplaza-->
+
+    <footer th:include = "fragments/fragment-testimonials :: testimonials"></footer>
 </body>
 </html>

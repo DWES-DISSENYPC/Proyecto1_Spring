@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        
+        <header th:fragment="cabecera"> <!-- Crea un fragmento con todo el codigo del header -->
+
+            <nav>
+
+                <ul>
+
+                    <!--Esta es la forma mas correcta por seguir la sintaxis de URL de Thymeleaf (th:href)-->
+                    <li><a th:href="@{/home}">Home</a></li> 
+                    <li><a th:href="@{/contact}">Contact</a></li> 
+                    <li><a th:href="@{/bestProduct}">Mejores Productos</a></li>
+
+                    <!--El siguiente codigo tambien valdria pero mejor el de arriba-->
+                    <!--<li><a href="/home">Home</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/bestProduct">Wellcome</a></li>-->
+
+                </ul>
+
+            </nav>
+
+        </header>
+
+    </body>
+
+</html>

@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Producto {
@@ -10,6 +12,7 @@ public class Producto {
     private Double precio;
     private Double peso;
     private String color;
+
     public static List<Producto> ListaProductos = new ArrayList<>();
 
     static {
@@ -37,6 +40,7 @@ public class Producto {
         this.peso = peso;
         this.color = color;
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -66,6 +70,19 @@ public class Producto {
     }
     public void setColor(String color) {
         this.color = color;
+    }
+
+    // Como pide el ejercicio, generamos aqui la lista aleatoria
+    public static List<Producto> obtenerProdutosDestacados(int i) {
+
+        List<Producto> lista = new ArrayList<>(ListaProductos); // Instanciamos la lista estatica que ya existe en la clase
+
+        Collections.shuffle(lista); // La desordenamos con este metodo de la clase Collections
+
+        int limite = Math.min(i, lista.size()); // Nos aseguramos que i no supera al tammaño de la lista y nos quedamos con lo mas pequeño
+
+        return lista.subList(0, limite); // Devolvemos una sub lista desde el primer elemento "0" hasta el elemento "limite"
+       
     }
 
     
