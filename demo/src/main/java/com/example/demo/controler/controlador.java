@@ -38,7 +38,7 @@ public class controlador {
     public String informacionProducto(Model model) {
         
         // Creamos un nuevo producto para pasarselo a producto-info.html con el model
-        Producto p = new Producto("teclado", "pvc", 40.32, 0.25, "negro");
+        Producto p = new Producto("6", "teclado", "pvc", 40.32, 0.25, "negro");
         model.addAttribute("producto", p); //Le damos nombre para el model al nuevo producto p
         return "product-info";// Llamamos a producto-info.html
     }
@@ -69,9 +69,37 @@ public class controlador {
     }
     
     
-    
-    
+    // Ejercicio 1.3
 
+    @GetMapping("/producto/{id}")
+    public String ProductoPoId(@PathVariable String id, Model model) {
+
+        
+        List<Producto> lista = Producto.ListaProductos; // Ver Producto.java para saber mas
+       // System.out.println("******************************************   " + id);
+        
+        for (Producto p: lista) {
+
+               // System.out.println("----------------------------------------- " + p.getId());
+            if (p.getId().equals(id)) {
+
+                
+                model.addAttribute("producto", p); // metemos en el model el producto p
+                return "producto";
+            }
+
+        }
+
+        return "redirect:/productos"; // Si no encuentra el id devuelve la lista completa
+        // Con un redirect que lo que hace es no buscar una plantilla si no enviar esa url al servidor
+    }
+    
+    
+    @GetMapping("/forumalioContacto")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
 
 
 }
