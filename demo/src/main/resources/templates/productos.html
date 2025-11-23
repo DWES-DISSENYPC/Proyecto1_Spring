@@ -7,6 +7,13 @@
 </head>
 <body>
     
+     <header th:replace = "fragments/fragment-header :: cabecera">
+                <!--  directorio/nombreFichero  ::  nombre del th "del fragmento"-->
+
+        <h1 th:text="'¡Bienvenido a la tienda ' + ${nombre} + '!'"></h1>
+
+    </header>
+
     <table> <!--Creamos una tabla-->
         <thead>
             <tr> <!--Con su cabecera-->
@@ -35,6 +42,8 @@
                  luego 2 decimales y la coma para separar los decimales-->
                 
                 <td th:text="${producto.color}">Color del producto</td>
+
+                <td> <a th:href=" @{/producto/{id}(id=${producto.id})}">..... Ver detalles</a></td>
             </tr>
         </tbody>
     </table>

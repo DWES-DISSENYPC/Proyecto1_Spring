@@ -10,8 +10,10 @@
                 <ul>
 
                     <!--Esta es la forma mas correcta por seguir la sintaxis de URL de Thymeleaf (th:href)-->
+                    <!--Con estas lineas se incluye tanto un enlace a una plantilla como una redireccion-->
                     <li><a th:href="@{/home}">Home</a></li> 
                     <li><a th:href="@{/contact}">Contact</a></li> 
+                    <li><a th:href="@{/productos}">Productos</a></li>
                     <li><a th:href="@{/bestProduct}">Mejores Productos</a></li>
 
                     <!--El siguiente codigo tambien valdria pero mejor el de arriba-->

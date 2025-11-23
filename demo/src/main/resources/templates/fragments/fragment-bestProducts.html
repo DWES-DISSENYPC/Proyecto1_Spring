@@ -35,6 +35,8 @@
                  luego 2 decimales y la coma para separar los decimales-->
                 
                 <td th:text="${producto.color}">Color del producto</td>
+
+                <td> <a th:href=" @{/producto/{id}(id=${producto.id})}">..... Ver detalles</a></td>
             </tr>
         </tbody>
     </table>
