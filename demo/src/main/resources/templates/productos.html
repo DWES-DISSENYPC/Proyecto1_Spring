@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table> <!--Creamos una tabla-->
+        <thead>
+            <tr> <!--Con su cabecera-->
+                <th>Nombre</th>
+                <th>Precio (€)</th>
+                <th>Material</th>
+                <th>Peso (kg)</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody><!--Empezamos el cuerpo de la tabla-->
+            <tr th:each="producto: ${productos}">
+                 <!-- Con th:each... estamos diciendo que cree una tabla con tantas filas como la 
+                  lista tenga productos y en cada th:text pone el valor de la variable que captura
+                  con "${producto. ...}"-->
+                
+                <td th:text="${producto.nombre}">Nombre del producto</td>
+                
+                <td th:text="${#numbers.formatCurrency(producto.precio)}">Precio del producto</td>
+                <!--usmos #numbers.formatCurrency Para formatear el double a moneda-->
+                
+                <td th:text="${producto.material}">Material del Producto</td>
+                
+                <td th:text="${#numbers.formatDecimal(producto.peso, 1, 'POINT', 2, 'COMMA')}">Peso del producto</td>
+                <!-- Aqui estamos formateando el numero decimal para que tenga minimo un numero entero y separar con punto los miles... 
+                 luego 2 decimales y la coma para separar los decimales-->
+                
+                <td th:text="${producto.color}">Color del producto</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
