@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Dinámico - Spring Boot</title>
+   
+</head>
+<body>
+
+    <!-- Reemplazar cabecera usando la sintaxis recomendada -->
+    <header th:replace = "fragments/fragment-header :: cabecera"> <!-- Sustituye todo el header por el codigo del fragmento-->
+    </header>
+
+    <main>
+        <div>
+            <h1>Formulario Dinámico (FormEntry)</h1>
+            <p>Este formulario se genera automáticamente desde el Controlador.</p>
+
+            <form th:action="@{/formularioContacto}" method="post"> <!--Llama a la URL /formularioContacto con el metodo post-->
+                
+                <!-- Itera sobre la lista de FormEntry pasada por el controlador con un foreach-->
+                <div th:each="entry : ${formFields}"> <!--Este html es llamado por el metodo @GetMapping que le pasa con el model formFields
+                    que es un objeto que tiene todos los campos que necesita el formulario-->
+
+                    <!-- Usa el label generado por la clase FormEntry pero en el for hay que poner el mismo que el nombre-->
+                    <label th:for="${entry.name}" th:text="${entry.label}"></label>
+
+                    <!-- Verifica si el tipo es 'textarea' o un input estándar -->
+                    <div th:switch="${entry.type}"> <!-- Aqui se mira con un swich el tipo de input-->
+                        
+                        <!-- Caso: Textarea (para el campo 'mensaje') -->
+                         <!--Ponemos primero este case por que es el diferente a los demas-->
+                        <textarea th:case="'textarea'"
+                            th:id="${entry.name}"
+                            th:name="${entry.name}"
+                            rows="4"
+                            placeholder="Introduce tu mensaje aquí..."
+                        ></textarea>
+
+                        <!-- Caso por defecto: Input (para 'nombre', 'email', 'asunto') -->
+                         <!-- con el * en el case hacemos el default-->
+                        <input th:case="*"
+                            th:type="${entry.type}" 
+                            th:id="${entry.name}" 
+                            th:name="${entry.name}"
+                            th:placeholder="|Introduce tu ${entry.name}|"
+                        />
+                    </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div>
+                    <button type="submit">Enviar Formulario Dinámico</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
